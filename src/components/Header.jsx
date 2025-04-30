@@ -1,9 +1,7 @@
 import { Fragment } from 'react'
 
-export default function Header(){
+export default function Header({cart}){
     
-    const total = 100
-
     return (
         <header className="py-5 header">
         <div className="container-xl">
@@ -32,13 +30,14 @@ export default function Header(){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    {cart.map( guitar => (
+                                    <tr key={guitar.id}>
                                         <td>
-                                            <img className="img-fluid" src="./public/img/guitarra_02.jpg" alt="imagen guitarra" />
+                                            <img className="img-fluid" src={`/img/${guitar.image}.jpg`} alt="imagen guitarra" />
                                         </td>
-                                        <td>SRV</td>
+                                        <td>{guitar.name}</td>
                                         <td className="fw-bold">
-                                                $299
+                                                ${guitar.name}
                                         </td>
                                         <td className="flex align-items-start gap-4">
                                             <button
@@ -47,7 +46,7 @@ export default function Header(){
                                             >
                                                 -
                                             </button>
-                                                1
+                                                {guitar.quantity}
                                             <button
                                                 type="button"
                                                 className="btn btn-dark"
@@ -64,6 +63,7 @@ export default function Header(){
                                             </button>
                                         </td>
                                     </tr>
+                                    ))}
                                 </tbody>
                             </table>
 
